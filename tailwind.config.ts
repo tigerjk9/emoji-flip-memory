@@ -105,6 +105,14 @@ export default {
         "float": {
           "0%, 100%": { transform: "translateY(0px)" },
           "50%": { transform: "translateY(-10px)" }
+        },
+        "glow": {
+          "0%, 100%": { boxShadow: "0 0 20px rgba(147, 51, 234, 0.3)" },
+          "50%": { boxShadow: "0 0 30px rgba(147, 51, 234, 0.6)" }
+        },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% 0" },
+          "100%": { backgroundPosition: "200% 0" }
         }
       },
       animation: {
@@ -113,7 +121,9 @@ export default {
         "flip": "flip 0.6s ease-in-out",
         "matched": "matched 0.5s ease-in-out",
         "pulse-gentle": "pulse-gentle 2s ease-in-out infinite",
-        "float": "float 3s ease-in-out infinite"
+        "float": "float 3s ease-in-out infinite",
+        "glow": "glow 2s ease-in-out infinite",
+        "shimmer": "shimmer 2s linear infinite"
       },
       backgroundImage: {
         'gradient-primary': 'var(--gradient-primary)',

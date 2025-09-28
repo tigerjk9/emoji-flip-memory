@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
+import Symbol from './Symbol';
 
 export interface Card {
   id: number;
-  emoji: string;
+  symbol: { id: string; name: string };
   isFlipped: boolean;
   isMatched: boolean;
 }
@@ -28,7 +29,7 @@ const GameCard = ({ card, onClick, disabled }: GameCardProps) => {
   return (
     <div
       className={cn(
-        "relative w-20 h-20 cursor-pointer transition-all duration-300 perspective-1000",
+        "relative w-24 h-24 cursor-pointer transition-all duration-300 perspective-1000 hover:scale-105",
         disabled && "cursor-not-allowed"
       )}
       onClick={() => !disabled && !card.isMatched && !card.isFlipped && onClick(card.id)}
@@ -41,22 +42,23 @@ const GameCard = ({ card, onClick, disabled }: GameCardProps) => {
         )}
       >
         {/* Card Back */}
-        <div className="absolute inset-0 w-full h-full backface-hidden bg-gradient-card border-2 border-card-back rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 flex items-center justify-center">
-          <div className="w-8 h-8 bg-gradient-primary rounded-full animate-pulse-gentle opacity-60"></div>
+        <div className="absolute inset-0 w-full h-full backface-hidden bg-gradient-card border-2 border-primary/30 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center backdrop-blur-sm">
+          <div className="w-10 h-10 bg-gradient-primary rounded-full animate-pulse-gentle opacity-70 shadow-inner"></div>
         </div>
         
         {/* Card Front */}
         <div 
           className={cn(
-            "absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-card-front border-2 border-primary/20 rounded-xl shadow-lg flex items-center justify-center text-4xl font-bold transition-all duration-300",
-            card.isMatched && "animate-matched bg-game-success/20 border-game-success/40"
+            "absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-gradient-to-br from-white to-primary/5 border-2 border-primary/30 rounded-2xl shadow-lg flex items-center justify-center transition-all duration-300 backdrop-blur-sm",
+            card.isMatched && "animate-matched bg-gradient-to-br from-game-success/20 to-game-success/10 border-game-success/50 shadow-lg shadow-game-success/30 animate-glow"
           )}
         >
-          {card.emoji}
+          <div className="w-16 h-16 p-2">
+            <Symbol symbolId={card.symbol.id} className={card.isMatched ? "text-game-success" : "text-primary"} />
+          </div>
         </div>
       </div>
     </div>
   );
 };
-
 export default GameCard;

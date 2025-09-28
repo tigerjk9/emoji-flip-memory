@@ -8,53 +8,53 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Pastel gradient background colors */
-    --background: 250 100% 97%;
-    --foreground: 340 20% 20%;
+    /* Modern sophisticated background colors */
+    --background: 220 15% 8%;
+    --foreground: 220 10% 95%;
 
-    /* Card colors with pastel theme */
-    --card: 0 0% 100%;
-    --card-foreground: 340 20% 20%;
-    --card-back: 270 30% 85%;
-    --card-front: 0 0% 100%;
+    /* Elegant card colors */
+    --card: 220 15% 12%;
+    --card-foreground: 220 10% 95%;
+    --card-back: 220 20% 15%;
+    --card-front: 220 15% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 340 20% 20%;
+    --popover: 220 15% 12%;
+    --popover-foreground: 220 10% 95%;
 
-    /* Pastel gradient primary colors */
-    --primary: 280 60% 70%;
-    --primary-foreground: 0 0% 100%;
-    --primary-hover: 290 65% 75%;
+    /* Sophisticated primary colors with purple-blue gradient */
+    --primary: 260 80% 65%;
+    --primary-foreground: 220 10% 95%;
+    --primary-hover: 270 85% 70%;
 
-    /* Soft pastel secondary */
-    --secondary: 320 45% 88%;
-    --secondary-foreground: 340 20% 20%;
+    /* Refined secondary colors */
+    --secondary: 280 60% 25%;
+    --secondary-foreground: 220 10% 95%;
 
-    --muted: 260 40% 90%;
-    --muted-foreground: 340 15% 45%;
+    --muted: 220 15% 20%;
+    --muted-foreground: 220 10% 70%;
 
-    --accent: 200 50% 85%;
-    --accent-foreground: 340 20% 20%;
+    --accent: 200 80% 60%;
+    --accent-foreground: 220 15% 8%;
 
-    --destructive: 0 70% 75%;
-    --destructive-foreground: 0 0% 100%;
+    --destructive: 0 80% 65%;
+    --destructive-foreground: 220 10% 95%;
 
-    --border: 270 30% 85%;
-    --input: 270 30% 90%;
-    --ring: 280 60% 70%;
+    --border: 220 20% 25%;
+    --input: 220 20% 18%;
+    --ring: 260 80% 65%;
 
-    --radius: 1rem;
+    --radius: 1.2rem;
 
-    /* Custom gradient variables */
-    --gradient-primary: linear-gradient(135deg, hsl(320 60% 80%), hsl(280 70% 75%), hsl(240 65% 80%));
-    --gradient-secondary: linear-gradient(45deg, hsl(20 80% 85%), hsl(340 70% 85%), hsl(280 60% 85%));
-    --gradient-card: linear-gradient(145deg, hsl(0 0% 100%), hsl(270 20% 95%));
-    --gradient-game-bg: linear-gradient(180deg, hsl(320 40% 92%), hsl(280 45% 90%), hsl(240 40% 88%));
+    /* Sophisticated gradient variables */
+    --gradient-primary: linear-gradient(135deg, hsl(260 80% 65%), hsl(280 85% 70%), hsl(300 75% 65%));
+    --gradient-secondary: linear-gradient(45deg, hsl(200 80% 60%), hsl(220 70% 65%), hsl(240 75% 70%));
+    --gradient-card: linear-gradient(145deg, hsl(220 15% 12%), hsl(220 20% 15%));
+    --gradient-game-bg: linear-gradient(180deg, hsl(220 15% 8%), hsl(230 20% 10%), hsl(240 15% 12%));
 
-    /* Game specific colors */
-    --game-success: 120 60% 75%;
-    --game-timer: 35 80% 70%;
-    --game-score: 280 60% 70%;
+    /* Enhanced game specific colors */
+    --game-success: 150 80% 60%;
+    --game-timer: 35 90% 65%;
+    --game-score: 260 80% 65%;
 
     --sidebar-background: 0 0% 98%;
 
@@ -73,42 +73,48 @@ All colors MUST be HSL.
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  .light {
+    /* Light mode with sophisticated colors */
+    --background: 220 15% 98%;
+    --foreground: 220 15% 8%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 220 15% 100%;
+    --card-foreground: 220 15% 8%;
+    --card-back: 220 20% 95%;
+    --card-front: 220 15% 100%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 220 15% 100%;
+    --popover-foreground: 220 15% 8%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 260 80% 55%;
+    --primary-foreground: 220 15% 98%;
+    --primary-hover: 270 85% 60%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 280 60% 85%;
+    --secondary-foreground: 220 15% 8%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 40%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 200 80% 50%;
+    --accent-foreground: 220 15% 98%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 80% 55%;
+    --destructive-foreground: 220 15% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 220 20% 85%;
+    --input: 220 20% 92%;
+    --ring: 260 80% 55%;
+
+    /* Light mode gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(260 80% 55%), hsl(280 85% 60%), hsl(300 75% 55%));
+    --gradient-secondary: linear-gradient(45deg, hsl(200 80% 50%), hsl(220 70% 55%), hsl(240 75% 60%));
+    --gradient-card: linear-gradient(145deg, hsl(220 15% 100%), hsl(220 20% 95%));
+    --gradient-game-bg: linear-gradient(180deg, hsl(220 15% 98%), hsl(230 20% 96%), hsl(240 15% 94%));
+
+    --game-success: 150 80% 50%;
+    --game-timer: 35 90% 55%;
+    --game-score: 260 80% 55%;
   }
 }
 

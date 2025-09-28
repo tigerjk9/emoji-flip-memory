@@ -6,9 +6,19 @@ import PlayerNameModal from '@/components/PlayerNameModal';
 import GameStats from '@/components/GameStats';
 import Leaderboard, { LeaderboardEntry } from '@/components/Leaderboard';
 import GameCompleteModal from '@/components/GameCompleteModal';
+import ParticleBackground from '@/components/ParticleBackground';
 
-// Game emojis for the memory game
-const GAME_EMOJIS = ['🐶', '🐱', '🐰', '🐸', '🦊', '🐷', '🐯', '🐻'];
+// Game symbols for the memory game - geometric and abstract designs
+const GAME_SYMBOLS = [
+  { id: 'circle', name: 'Circle' },
+  { id: 'triangle', name: 'Triangle' },
+  { id: 'diamond', name: 'Diamond' },
+  { id: 'hexagon', name: 'Hexagon' },
+  { id: 'star', name: 'Star' },
+  { id: 'cross', name: 'Cross' },
+  { id: 'wave', name: 'Wave' },
+  { id: 'spiral', name: 'Spiral' }
+];
 
 const Index = () => {
   const { toast } = useToast();
@@ -37,10 +47,10 @@ const Index = () => {
     let idCounter = 0;
     
     // Create pairs of cards
-    GAME_EMOJIS.forEach((emoji) => {
+    GAME_SYMBOLS.forEach((symbol) => {
       gameCards.push(
-        { id: idCounter++, emoji, isFlipped: false, isMatched: false },
-        { id: idCounter++, emoji, isFlipped: false, isMatched: false }
+        { id: idCounter++, symbol, isFlipped: false, isMatched: false },
+        { id: idCounter++, symbol, isFlipped: false, isMatched: false }
       );
     });
     
@@ -76,7 +86,7 @@ const Index = () => {
       const firstCard = cards.find(card => card.id === firstCardId);
       const secondCard = cards.find(card => card.id === secondCardId);
       
-      if (firstCard && secondCard && firstCard.emoji === secondCard.emoji) {
+      if (firstCard && secondCard && firstCard.symbol.id === secondCard.symbol.id) {
         // Match found!
         setTimeout(() => {
           setCards(prev => prev.map(card => 
@@ -89,8 +99,8 @@ const Index = () => {
           setFlippedCards([]);
           
           toast({
-            title: "매칭 성공! 🎉",
-            description: "+100점",
+            title: "매칭 성공! ✨",
+            description: "+100점 • Perfect Match!",
           });
         }, 1000);
       } else {
@@ -109,7 +119,7 @@ const Index = () => {
 
   // Check for game completion
   useEffect(() => {
-    if (matchedPairs === GAME_EMOJIS.length && gameStartTime) {
+    if (matchedPairs === GAME_SYMBOLS.length && gameStartTime) {
       const gameTime = Math.floor((Date.now() - gameStartTime) / 1000);
       const timeBonus = Math.max(0, 300 - gameTime); // Bonus for completing faster
       const finalScore = score + timeBonus;
@@ -138,7 +148,7 @@ const Index = () => {
       
       toast({
         title: "게임 완료! 🏆",
-        description: `최종 점수: ${finalScore}점`,
+        description: `최종 점수: ${finalScore}점 • Congratulations!`,
       });
     }
   }, [matchedPairs, gameStartTime, score, moves, playerName, toast]);
@@ -163,15 +173,16 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-game-bg py-8 px-4">
-      <div className="container mx-auto">
+    <div className="min-h-screen bg-gradient-game-bg py-8 px-4 relative overflow-hidden">
+      <ParticleBackground />
+      <div className="container mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-4 animate-float">
-            🧠 Memory Card Game
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-float tracking-tight">
+            ◇ Memory Nexus
           </h1>
-          <p className="text-lg text-muted-foreground">
-            카드를 뒤집어서 같은 이모지 쌍을 찾아보세요!
+          <p className="text-xl text-muted-foreground font-light">
+            카드를 뒤집어서 같은 심볼 쌍을 찾아보세요
           </p>
         </div>
 
@@ -189,7 +200,7 @@ const Index = () => {
         {/* Game Board */}
         {!showNameModal && (
           <div className="flex justify-center mb-8">
-            <div className="grid grid-cols-4 gap-4 p-6 bg-gradient-card rounded-2xl border-2 border-primary/20 shadow-xl">
+            <div className="grid grid-cols-4 gap-6 p-8 bg-gradient-card rounded-3xl border border-primary/30 shadow-2xl backdrop-blur-sm">
               {cards.map((card) => (
                 <GameCard
                   key={card.id}
@@ -207,9 +218,9 @@ const Index = () => {
           <div className="flex justify-center mb-8">
             <Button
               onClick={() => setShowNameModal(true)}
-              className="bg-gradient-secondary hover:bg-secondary/80 text-secondary-foreground font-semibold px-8 py-3 rounded-xl transition-all duration-300"
+              className="bg-gradient-secondary hover:scale-105 text-secondary-foreground font-semibold px-10 py-4 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-xl border border-primary/20"
             >
-              🔄 게임 재시작
+              ↻ 게임 재시작
             </Button>
           </div>
         )}
@@ -226,9 +237,9 @@ const Index = () => {
         {/* Supabase Integration Notice */}
         {!showNameModal && (
           <div className="mt-8 text-center">
-            <div className="bg-gradient-secondary/20 border border-primary/20 rounded-xl p-4 max-w-2xl mx-auto">
-              <p className="text-sm text-muted-foreground">
-                💡 리더보드를 온라인으로 공유하려면 Supabase 연결이 필요합니다. 
+            <div className="bg-gradient-secondary/10 border border-primary/20 rounded-2xl p-6 max-w-2xl mx-auto backdrop-blur-sm">
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                ◆ 리더보드를 온라인으로 공유하려면 Supabase 연결이 필요합니다. 
                 화면 우상단의 초록색 Supabase 버튼을 클릭해주세요!
               </p>
             </div>
