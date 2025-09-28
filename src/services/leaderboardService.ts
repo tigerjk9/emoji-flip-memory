@@ -5,7 +5,7 @@ export type LeaderboardEntry = Database['public']['Tables']['leaderboard']['Row'
 export type LeaderboardInsert = Database['public']['Tables']['leaderboard']['Insert'];
 
 // 리더보드 항목 추가
-export const addLeaderboardEntry = async (entry: Omit<LeaderboardInsert, 'id' | 'created_at'>): Promise<LeaderboardEntry | null> => {
+export const addLeaderboardEntry = async (entry: Pick<LeaderboardInsert, 'player_name' | 'score' | 'time_seconds' | 'moves'>): Promise<LeaderboardEntry | null> => {
   try {
     const { data, error } = await supabase
       .from('leaderboard')
@@ -82,7 +82,7 @@ export const migrateLocalStorageToSupabase = async (): Promise<void> => {
     console.log('localStorage 데이터를 Supabase로 마이그레이션 중...', localEntries);
 
     // 기존 localStorage 데이터를 Supabase 형식으로 변환
-    const supabaseEntries = localEntries.map(entry => ({
+    const supabaseEntries: LeaderboardInsert[] = localEntries.map(entry => ({
       player_name: entry.playerName,
       score: entry.score,
       time_seconds: entry.time,
