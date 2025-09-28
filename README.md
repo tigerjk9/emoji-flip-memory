@@ -10,7 +10,7 @@ There are several ways of editing your application.
 
 **Use Lovable**
 
-Simply visit the [Lovable Project]([https://lovable.dev/projects/d7631d4b-b6ec-4135-8062-6b3385c5e3de](https://emoji-flip-memory.lovable.app/)) and start prompting.
+Simply visit the [Lovable Project]([https://emoji-flip-memory.lovable.app](https://emoji-flip-memory.lovable.app/)/) and start prompting.
 
 Changes made via Lovable will be committed automatically to this repo.
 
