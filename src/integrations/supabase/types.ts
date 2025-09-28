@@ -14,7 +14,32 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      leaderboard: {
+        Row: {
+          id: string
+          player_name: string
+          score: number
+          time_seconds: number
+          moves: number
+          created_at: string
+        }
+        Insert: {
+          id?: string
+          player_name: string
+          score: number
+          time_seconds: number
+          moves: number
+          created_at?: string
+        }
+        Update: {
+          id?: string
+          player_name?: string
+          score?: number
+          time_seconds?: number
+          moves?: number
+          created_at?: string
+        }
+      }
     }
     Views: {
       [_ in never]: never

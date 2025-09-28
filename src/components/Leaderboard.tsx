@@ -1,14 +1,6 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-
-export interface LeaderboardEntry {
-  id: string;
-  playerName: string;
-  score: number;
-  time: number;
-  moves: number;
-  createdAt: string;
-}
+import type { LeaderboardEntry } from '@/services/leaderboardService';
 
 interface LeaderboardProps {
   entries: LeaderboardEntry[];
@@ -69,9 +61,9 @@ const Leaderboard = ({ entries, isVisible, onToggle }: LeaderboardProps) => {
                   <div className="flex items-center gap-3">
                     <span className="text-2xl">{getRankEmoji(index + 1)}</span>
                     <div>
-                      <p className="font-semibold text-foreground">{entry.playerName}</p>
+                      <p className="font-semibold text-foreground">{entry.player_name}</p>
                       <p className="text-sm text-muted-foreground">
-                        {new Date(entry.createdAt).toLocaleDateString('ko-KR')}
+                        {new Date(entry.created_at).toLocaleDateString('ko-KR')}
                       </p>
                     </div>
                   </div>
@@ -82,7 +74,7 @@ const Leaderboard = ({ entries, isVisible, onToggle }: LeaderboardProps) => {
                       <p className="text-muted-foreground">점수</p>
                     </div>
                     <div className="text-center">
-                      <p className="font-bold text-game-timer">{formatTime(entry.time)}</p>
+                      <p className="font-bold text-game-timer">{formatTime(entry.time_seconds)}</p>
                       <p className="text-muted-foreground">시간</p>
                     </div>
                     <div className="text-center">
