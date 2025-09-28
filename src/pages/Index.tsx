@@ -240,6 +240,7 @@ const Index = () => {
       <PlayerNameModal 
         isOpen={showNameModal}
         onSubmit={handlePlayerNameSubmit}
+        onClose={() => setShowNameModal(false)}
       />
       
       <GameCompleteModal

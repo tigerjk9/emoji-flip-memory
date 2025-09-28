@@ -6,9 +6,10 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 interface PlayerNameModalProps {
   isOpen: boolean;
   onSubmit: (name: string) => void;
+  onClose: () => void;
 }
 
-const PlayerNameModal = ({ isOpen, onSubmit }: PlayerNameModalProps) => {
+const PlayerNameModal = ({ isOpen, onSubmit, onClose }: PlayerNameModalProps) => {
   const [playerName, setPlayerName] = useState('');
 
   useEffect(() => {
@@ -29,7 +30,7 @@ const PlayerNameModal = ({ isOpen, onSubmit }: PlayerNameModalProps) => {
   };
 
   return (
-    <Dialog open={isOpen}>
+    <Dialog open={isOpen} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="sm:max-w-md bg-gradient-card border-2 border-primary/20">
         <DialogHeader className="text-center">
           <DialogTitle className="text-2xl font-bold bg-gradient-primary bg-clip-text text-transparent">
