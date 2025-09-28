@@ -22,6 +22,7 @@ export default {
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
+          hover: "hsl(var(--primary-hover))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -46,6 +47,13 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+          back: "hsl(var(--card-back))",
+          front: "hsl(var(--card-front))",
+        },
+        game: {
+          success: "hsl(var(--game-success))",
+          timer: "hsl(var(--game-timer))",
+          score: "hsl(var(--game-score))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
@@ -80,10 +88,38 @@ export default {
             height: "0",
           },
         },
+        "flip": {
+          "0%": { transform: "rotateY(0deg)" },
+          "50%": { transform: "rotateY(90deg)" },
+          "100%": { transform: "rotateY(0deg)" }
+        },
+        "matched": {
+          "0%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.1)" },
+          "100%": { transform: "scale(1)" }
+        },
+        "pulse-gentle": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0.8" }
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" }
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "flip": "flip 0.6s ease-in-out",
+        "matched": "matched 0.5s ease-in-out",
+        "pulse-gentle": "pulse-gentle 2s ease-in-out infinite",
+        "float": "float 3s ease-in-out infinite"
+      },
+      backgroundImage: {
+        'gradient-primary': 'var(--gradient-primary)',
+        'gradient-secondary': 'var(--gradient-secondary)',
+        'gradient-card': 'var(--gradient-card)',
+        'gradient-game-bg': 'var(--gradient-game-bg)',
       },
     },
   },
