@@ -16,29 +16,30 @@ export type Database = {
     Tables: {
       leaderboard: {
         Row: {
+          created_at: string
           id: string
+          moves: number
           player_name: string
           score: number
           time_seconds: number
-          moves: number
-          created_at: string
         }
         Insert: {
+          created_at?: string
           id?: string
+          moves: number
           player_name: string
           score: number
           time_seconds: number
-          moves: number
-          created_at?: string
         }
         Update: {
+          created_at?: string
           id?: string
+          moves?: number
           player_name?: string
           score?: number
           time_seconds?: number
-          moves?: number
-          created_at?: string
         }
+        Relationships: []
       }
     }
     Views: {
