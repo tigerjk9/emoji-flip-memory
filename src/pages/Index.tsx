@@ -213,6 +213,20 @@ const Index = () => {
     initializeGame();
   };
 
+  // Handle close modal (end game)
+  const handleCloseModal = () => {
+    setShowCompleteModal(false);
+    setIsGameComplete(false);
+    // Reset game state to initial
+    setCards([]);
+    setFlippedCards([]);
+    setMatchedPairs(0);
+    setMoves(0);
+    setScore(0);
+    setGameStartTime(null);
+    setShowNameModal(true); // Show name modal to start a new game
+  };
+
   return (
     <div className="min-h-screen bg-gradient-game-bg py-8 px-4 relative overflow-hidden">
       <ParticleBackground />
@@ -287,6 +301,7 @@ const Index = () => {
       <GameCompleteModal
         isOpen={showCompleteModal}
         onPlayAgain={handlePlayAgain}
+        onClose={handleCloseModal}
         score={score}
         time={gameStartTime ? Math.floor((Date.now() - gameStartTime) / 1000) : 0}
         moves={moves}
@@ -294,6 +309,4 @@ const Index = () => {
       />
     </div>
   );
-};
 
-export default Index;
