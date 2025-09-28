@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { cn } from '@/lib/utils';
-import Symbol from './Symbol';
 
 export interface Card {
   id: number;
-  symbol: { id: string; name: string };
+  emoji: string;
   isFlipped: boolean;
   isMatched: boolean;
 }
@@ -53,8 +52,8 @@ const GameCard = ({ card, onClick, disabled }: GameCardProps) => {
             card.isMatched && "animate-matched bg-gradient-to-br from-game-success/20 to-game-success/10 border-game-success/50 shadow-lg shadow-game-success/30 animate-glow"
           )}
         >
-          <div className="w-16 h-16 p-2">
-            <Symbol symbolId={card.symbol.id} className={card.isMatched ? "text-game-success" : "text-primary"} />
+          <div className="text-4xl font-bold">
+            {card.emoji}
           </div>
         </div>
       </div>

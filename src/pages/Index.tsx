@@ -8,17 +8,8 @@ import Leaderboard, { LeaderboardEntry } from '@/components/Leaderboard';
 import GameCompleteModal from '@/components/GameCompleteModal';
 import ParticleBackground from '@/components/ParticleBackground';
 
-// Game symbols for the memory game - geometric and abstract designs
-const GAME_SYMBOLS = [
-  { id: 'circle', name: 'Circle' },
-  { id: 'triangle', name: 'Triangle' },
-  { id: 'diamond', name: 'Diamond' },
-  { id: 'hexagon', name: 'Hexagon' },
-  { id: 'star', name: 'Star' },
-  { id: 'cross', name: 'Cross' },
-  { id: 'wave', name: 'Wave' },
-  { id: 'spiral', name: 'Spiral' }
-];
+// Game emojis for the memory game - cute animals
+const GAME_EMOJIS = ['🐶', '🐱', '🐰', '🐸', '🦊', '🐷', '🐯', '🐻'];
 
 const Index = () => {
   const { toast } = useToast();
@@ -47,10 +38,10 @@ const Index = () => {
     let idCounter = 0;
     
     // Create pairs of cards
-    GAME_SYMBOLS.forEach((symbol) => {
+    GAME_EMOJIS.forEach((emoji) => {
       gameCards.push(
-        { id: idCounter++, symbol, isFlipped: false, isMatched: false },
-        { id: idCounter++, symbol, isFlipped: false, isMatched: false }
+        { id: idCounter++, emoji, isFlipped: false, isMatched: false },
+        { id: idCounter++, emoji, isFlipped: false, isMatched: false }
       );
     });
     
@@ -86,7 +77,7 @@ const Index = () => {
       const firstCard = cards.find(card => card.id === firstCardId);
       const secondCard = cards.find(card => card.id === secondCardId);
       
-      if (firstCard && secondCard && firstCard.symbol.id === secondCard.symbol.id) {
+      if (firstCard && secondCard && firstCard.emoji === secondCard.emoji) {
         // Match found!
         setTimeout(() => {
           setCards(prev => prev.map(card => 
@@ -119,7 +110,7 @@ const Index = () => {
 
   // Check for game completion
   useEffect(() => {
-    if (matchedPairs === GAME_SYMBOLS.length && gameStartTime && !isGameComplete && playerName.trim()) {
+    if (matchedPairs === GAME_EMOJIS.length && gameStartTime && !isGameComplete && playerName.trim()) {
       const gameTime = Math.floor((Date.now() - gameStartTime) / 1000);
       const timeBonus = Math.max(0, 300 - gameTime); // Bonus for completing faster
       const finalScore = score + timeBonus;
@@ -220,10 +211,10 @@ const Index = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-6xl font-bold bg-gradient-primary bg-clip-text text-transparent mb-6 animate-float tracking-tight">
-            ◇ Memory Nexus
+            🧠 Animal Memory Game
           </h1>
           <p className="text-xl text-muted-foreground font-light">
-            카드를 뒤집어서 같은 심볼 쌍을 찾아보세요
+            카드를 뒤집어서 같은 동물 쌍을 찾아보세요
           </p>
         </div>
 
