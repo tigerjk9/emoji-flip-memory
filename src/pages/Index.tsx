@@ -206,7 +206,7 @@ const Index = () => {
         {!showNameModal && !isGameComplete && (
           <div className="flex justify-center mb-8">
             <Button
-              onClick={initializeGame}
+              onClick={() => setShowNameModal(true)}
               className="bg-gradient-secondary hover:bg-secondary/80 text-secondary-foreground font-semibold px-8 py-3 rounded-xl transition-all duration-300"
             >
               🔄 게임 재시작
