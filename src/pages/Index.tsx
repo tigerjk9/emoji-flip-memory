@@ -119,7 +119,7 @@ const Index = () => {
 
   // Check for game completion
   useEffect(() => {
-    if (matchedPairs === GAME_SYMBOLS.length && gameStartTime) {
+    if (matchedPairs === GAME_SYMBOLS.length && gameStartTime && !isGameComplete && playerName.trim()) {
       const gameTime = Math.floor((Date.now() - gameStartTime) / 1000);
       const timeBonus = Math.max(0, 300 - gameTime); // Bonus for completing faster
       const finalScore = score + timeBonus;
@@ -131,39 +131,80 @@ const Index = () => {
       // Save to leaderboard (localStorage for now, Supabase integration pending)
       const newEntry: LeaderboardEntry = {
         id: Date.now().toString(),
-        playerName,
+        playerName: playerName.trim(),
         score: finalScore,
         time: gameTime,
         moves,
         createdAt: new Date().toISOString(),
       };
       
+      // Load existing entries and add new entry
       const savedEntries = JSON.parse(localStorage.getItem('memoryGameLeaderboard') || '[]');
       const updatedEntries = [...savedEntries, newEntry]
         .sort((a, b) => b.score - a.score)
         .slice(0, 10);
       
+      // Save updated entries
       localStorage.setItem('memoryGameLeaderboard', JSON.stringify(updatedEntries));
       setLeaderboardEntries(updatedEntries);
+      
+      console.log('리더보드 저장됨:', newEntry);
+      console.log('전체 리더보드:', updatedEntries);
       
       toast({
         title: "게임 완료! 🏆",
         description: `최종 점수: ${finalScore}점 • Congratulations!`,
       });
     }
-  }, [matchedPairs, gameStartTime, score, moves, playerName, toast]);
+  }, [matchedPairs, gameStartTime, score, moves, playerName, toast, isGameComplete]);
 
   // Load leaderboard on component mount
   useEffect(() => {
     const savedEntries = JSON.parse(localStorage.getItem('memoryGameLeaderboard') || '[]');
+    console.log('컴포넌트 마운트 시 로드된 리더보드:', savedEntries);
     setLeaderboardEntries(savedEntries);
+    
+    // 개발자 도구에서 사용할 수 있는 디버깅 함수들을 전역으로 등록
+    (window as any).debugLeaderboard = {
+      get: () => {
+        const entries = JSON.parse(localStorage.getItem('memoryGameLeaderboard') || '[]');
+        console.log('현재 localStorage의 리더보드:', entries);
+        return entries;
+      },
+      clear: () => {
+        localStorage.removeItem('memoryGameLeaderboard');
+        setLeaderboardEntries([]);
+        console.log('리더보드가 초기화되었습니다.');
+      },
+      add: (name: string, score: number) => {
+        const newEntry = {
+          id: Date.now().toString(),
+          playerName: name,
+          score: score,
+          time: 60,
+          moves: 10,
+          createdAt: new Date().toISOString(),
+        };
+        const savedEntries = JSON.parse(localStorage.getItem('memoryGameLeaderboard') || '[]');
+        const updatedEntries = [...savedEntries, newEntry]
+          .sort((a, b) => b.score - a.score)
+          .slice(0, 10);
+        localStorage.setItem('memoryGameLeaderboard', JSON.stringify(updatedEntries));
+        setLeaderboardEntries(updatedEntries);
+        console.log('테스트 엔트리가 추가되었습니다:', newEntry);
+      }
+    };
   }, []);
 
   // Handle player name submission
   const handlePlayerNameSubmit = (name: string) => {
-    setPlayerName(name);
+    setPlayerName(name.trim());
     setShowNameModal(false);
     initializeGame();
+    
+    // Reload leaderboard when starting a new game
+    const savedEntries = JSON.parse(localStorage.getItem('memoryGameLeaderboard') || '[]');
+    setLeaderboardEntries(savedEntries);
   };
 
   // Handle play again

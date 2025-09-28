@@ -17,6 +17,9 @@ interface LeaderboardProps {
 }
 
 const Leaderboard = ({ entries, isVisible, onToggle }: LeaderboardProps) => {
+  // 디버깅을 위한 로그
+  console.log('Leaderboard 컴포넌트 렌더링, entries:', entries);
+  
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
     const secs = seconds % 60;
