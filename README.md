@@ -2,8 +2,8 @@
 
 ## Project info
 
-**URL**: [https://lovable.dev/projects/d7631d4b-b6ec-4135-8062-6b3385c5e3de
-](https://emoji-flip-memory.lovable.app/)
+**URL**: [https://emoji-flip-memory.vercel.app/](https://emoji-flip-memory.vercel.app/)
+
 ## How can I edit this code?
 
 There are several ways of editing your application.
